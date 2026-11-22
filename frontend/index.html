@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RareRoot - Botanical Marketplace & Plant Health</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿</text></svg>">
+</head>
+<body>
+  <div class="auth-page">
+    <!-- Brand Showcase Left Panel -->
+    <div class="auth-brand-panel">
+      <div>
+        <div class="brand-badge">
+          <span>🌿</span> RareRoot Botanical Platform
+        </div>
+        <h1 class="brand-title">Grow with confidence.</h1>
+        <p class="brand-tagline">
+          The premier verified botanical marketplace for rare collectibles, indoor foliage, and tree specimens, paired with AI-driven plant diagnostics and international import compliance.
+        </p>
+
+        <div class="brand-features">
+          <div class="brand-feature-item">
+            <span class="icon">🩺</span>
+            <div>
+              <h4>AI-Assisted Plant Doctor</h4>
+              <p>Step-by-step symptom diagnostics with organic-first ranked remedies and household safety filtering.</p>
+            </div>
+          </div>
+          <div class="brand-feature-item">
+            <span class="icon">📜</span>
+            <div>
+              <h4>Import Document Checker</h4>
+              <p>Cross-border biosecurity guidance, CITES trade alerts, and prohibited species verification.</p>
+            </div>
+          </div>
+          <div class="brand-feature-item">
+            <span class="icon">🌱</span>
+            <div>
+              <h4>Wanted Plant Board</h4>
+              <p>Connect buyers sourcing coveted botanical species directly with verified specialist nurseries.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="brand-footer">
+        BSc Hons Computing — University Second Year Project (IIC) &bull; Currency: NPR (Nepal)
+      </div>
+    </div>
+
+    <!-- Form Panel Right -->
+    <div class="auth-form-panel">
+      <!-- Tabs -->
+      <div class="auth-tabs" id="authTabs">
+        <button class="auth-tab-btn active" data-tab="login" id="tabLoginBtn">Sign In</button>
+        <button class="auth-tab-btn" data-tab="register" id="tabRegisterBtn">Create Account</button>
+      </div>
+
+      <!-- Quick Fill Demo Accounts -->
+      <div class="demo-accounts-box" id="demoAccountsBox">
+        <h5>⚡ Demo Accounts (One-Click Fill)</h5>
+        <div class="demo-pills">
+          <button type="button" class="demo-pill" data-email="buyer@rareroot.com" data-pass="Buyer@12345" data-role="Buyer">
+            <span>🛒</span> Buyer (Aarav)
+          </button>
+          <button type="button" class="demo-pill" data-email="seller@rareroot.com" data-pass="Seller@12345" data-role="Seller">
+            <span>🏡</span> Seller (Nursery)
+          </button>
+          <button type="button" class="demo-pill" data-email="admin@rareroot.com" data-pass="Admin@12345" data-role="Admin">
+            <span>🛡️</span> Administrator
+          </button>
+        </div>
+      </div>
+
+      <!-- Message Alert Box -->
+      <div id="alertBox" style="display: none; padding: 0.8rem 1rem; border-radius: var(--radius-sm); margin-bottom: 1.25rem; font-size: 0.88rem;"></div>
+
+      <!-- LOGIN FORM -->
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="loginEmail">Email Address</label>
+          <input type="email" id="loginEmail" class="form-input" placeholder="name@example.com" required autocomplete="email">
+        </div>
+        <div class="form-group">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem;">
+            <label for="loginPassword" style="margin-bottom: 0;">Password</label>
+            <a href="#" id="forgotPasswordLink" style="font-size: 0.82rem;">Forgot password?</a>
+          </div>
+          <input type="password" id="loginPassword" class="form-input" placeholder="••••••••" required autocomplete="current-password">
+        </div>
+        <button type="submit" class="btn btn-primary btn-block" id="loginSubmitBtn">
+          Sign In to RareRoot
+        </button>
+      </form>
+
+      <!-- REGISTER FORM -->
+      <form id="registerForm" style="display: none;">
+        <div class="form-group">
+          <label for="regFullName">Full Name / Nursery Name</label>
+          <input type="text" id="regFullName" class="form-input" placeholder="e.g. Maya Shrestha" required>
+        </div>
+        <div class="form-group">
+          <label for="regEmail">Email Address</label>
+          <input type="email" id="regEmail" class="form-input" placeholder="name@example.com" required>
+        </div>
+        <div class="form-group">
+          <label for="regPassword">Password</label>
+          <input type="password" id="regPassword" class="form-input" placeholder="8-64 characters, letters & numbers" required>
+          <div class="form-hint">Must contain at least 8 characters, one letter, and one number.</div>
+        </div>
+        <div class="form-group">
+          <label for="regRole">Account Type</label>
+          <select id="regRole" class="form-select" required>
+            <option value="buyer">Plant Collector / Buyer</option>
+            <option value="seller">Nursery / Plant Seller (Requires approval)</option>
+          </select>
+          <div class="form-hint">New seller registrations require administrative review before listing products.</div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block" id="registerSubmitBtn">
+          Create Account
+        </button>
+      </form>
+
+      <!-- FORGOT PASSWORD VIEW -->
+      <div id="forgotPasswordView" style="display: none;">
+        <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem;">Reset Your Password</h3>
+        <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+          Enter your registered email address. In development mode, the reset token will be provided immediately.
+        </p>
+        <form id="forgotPasswordForm">
+          <div class="form-group">
+            <label for="forgotEmail">Email Address</label>
+            <input type="email" id="forgotEmail" class="form-input" placeholder="name@example.com" required>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Generate Reset Token</button>
+          <div style="text-align: center; margin-top: 1rem;">
+            <a href="#" id="backToLoginFromForgot" style="font-size: 0.85rem;">Back to Sign In</a>
+          </div>
+        </form>
+
+        <!-- Step 2: Reset Form -->
+        <div id="resetStepTwo" style="display: none; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border);">
+          <form id="resetPasswordForm">
+            <div class="form-group">
+              <label for="resetToken">Reset Token</label>
+              <input type="text" id="resetToken" class="form-input" placeholder="Paste reset token here" required>
+            </div>
+            <div class="form-group">
+              <label for="resetNewPass">New Password</label>
+              <input type="password" id="resetNewPass" class="form-input" placeholder="8-64 chars, letter & number" required>
+            </div>
+            <button type="submit" class="btn btn-accent btn-block">Confirm New Password</button>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script type="module">
+    import { authApi, getToken, setToken, setCurrentUser, getCurrentUser } from "./js/api.js";
+
+    // If already logged in, redirect to dashboard
+    if (getToken() && getCurrentUser()) {
+      window.location.href = "dashboard.html";
+    }
+
+    const alertBox = document.getElementById("alertBox");
+    const toastContainer = document.getElementById("toastContainer");
+
+    function showAlert(msg, isError = true) {
+      alertBox.style.display = "block";
+      alertBox.style.background = isError ? "var(--danger-bg)" : "var(--success-bg)";
+      alertBox.style.color = isError ? "var(--danger)" : "var(--success)";
+      alertBox.style.border = isError ? "1px solid #ff80ab" : "1px solid #a5d6a7";
+      alertBox.textContent = msg;
+    }
+
+    function hideAlert() {
+      alertBox.style.display = "none";
+    }
+
+    function showToast(msg, type = "info") {
+      const toast = document.createElement("div");
+      toast.className = `toast ${type}`;
+      toast.textContent = msg;
+      toastContainer.appendChild(toast);
+      setTimeout(() => toast.remove(), 4000);
+    }
+
+    // Tabs logic
+    const tabLoginBtn = document.getElementById("tabLoginBtn");
+    const tabRegisterBtn = document.getElementById("tabRegisterBtn");
+    const loginForm = document.getElementById("loginForm");
+    const registerForm = document.getElementById("registerForm");
+    const forgotPasswordView = document.getElementById("forgotPasswordView");
+    const demoAccountsBox = document.getElementById("demoAccountsBox");
+
+    tabLoginBtn.addEventListener("click", () => {
+      tabLoginBtn.classList.add("active");
+      tabRegisterBtn.classList.remove("active");
+      loginForm.style.display = "block";
+      registerForm.style.display = "none";
+      forgotPasswordView.style.display = "none";
+      demoAccountsBox.style.display = "block";
+      hideAlert();
+    });
+
+    tabRegisterBtn.addEventListener("click", () => {
+      tabRegisterBtn.classList.add("active");
+      tabLoginBtn.classList.remove("active");
+      loginForm.style.display = "none";
+      registerForm.style.display = "block";
+      forgotPasswordView.style.display = "none";
+      demoAccountsBox.style.display = "none";
+      hideAlert();
+    });
+
+    // Demo pills click
+    document.querySelectorAll(".demo-pill").forEach(btn => {
+      btn.addEventListener("click", () => {
+        tabLoginBtn.click();
+        document.getElementById("loginEmail").value = btn.dataset.email;
+        document.getElementById("loginPassword").value = btn.dataset.pass;
+        showToast(`Filled credentials for ${btn.dataset.role} account!`, "info");
+      });
+    });
+
+    // Login submit
+    loginForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      hideAlert();
+      const submitBtn = document.getElementById("loginSubmitBtn");
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Signing In...";
+
+      try {
+        const email = document.getElementById("loginEmail").value.trim();
+        const password = document.getElementById("loginPassword").value;
+        const resp = await authApi.login({ email, password });
+        setToken(resp.access_token);
+        setCurrentUser(resp.user);
+        showToast(`Welcome back, ${resp.user.full_name}!`, "success");
+        setTimeout(() => {
+          window.location.href = "dashboard.html";
+        }, 300);
+      } catch (err) {
+        showAlert(err.message, true);
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Sign In to RareRoot";
+      }
+    });
+
+    // Register submit
+    registerForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      hideAlert();
+      const submitBtn = document.getElementById("registerSubmitBtn");
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Creating Account...";
+
+      try {
+        const full_name = document.getElementById("regFullName").value.trim();
+        const email = document.getElementById("regEmail").value.trim();
+        const password = document.getElementById("regPassword").value;
+        const role = document.getElementById("regRole").value;
+
+        const newUser = await authApi.register({ full_name, email, password, role });
+        showToast("Account created successfully! Signing you in...", "success");
+
+        // Automatically log in
+        const loginResp = await authApi.login({ email, password });
+        setToken(loginResp.access_token);
+        setCurrentUser(loginResp.user);
+        setTimeout(() => {
+          window.location.href = "dashboard.html";
+        }, 500);
+      } catch (err) {
+        showAlert(err.message, true);
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Create Account";
+      }
+    });
+
+    // Forgot password flow
+    const forgotPasswordLink = document.getElementById("forgotPasswordLink");
+    const backToLoginFromForgot = document.getElementById("backToLoginFromForgot");
+    const forgotPasswordForm = document.getElementById("forgotPasswordForm");
+    const resetStepTwo = document.getElementById("resetStepTwo");
+    const resetPasswordForm = document.getElementById("resetPasswordForm");
+
+    forgotPasswordLink.addEventListener("click", (e) => {
+      e.preventDefault();
+      loginForm.style.display = "none";
+      registerForm.style.display = "none";
+      forgotPasswordView.style.display = "block";
+      demoAccountsBox.style.display = "none";
+      hideAlert();
+    });
+
+    backToLoginFromForgot.addEventListener("click", (e) => {
+      e.preventDefault();
+      tabLoginBtn.click();
+    });
+
+    forgotPasswordForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      hideAlert();
+      const email = document.getElementById("forgotEmail").value.trim();
+      try {
+        const resp = await authApi.forgotPassword({ email });
+        showAlert(resp.message, false);
+        if (resp.reset_token) {
+          document.getElementById("resetToken").value = resp.reset_token;
+          showToast("Development Reset Token auto-populated!", "info");
+        }
+        resetStepTwo.style.display = "block";
+      } catch (err) {
+        showAlert(err.message, true);
+      }
+    });
+
+    resetPasswordForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      hideAlert();
+      const token = document.getElementById("resetToken").value.trim();
+      const new_password = document.getElementById("resetNewPass").value;
+      try {
+        const resp = await authApi.resetPassword({ token, new_password });
+        showAlert(resp.message, false);
+        showToast("Password reset successful. Please sign in.", "success");
+        setTimeout(() => {
+          tabLoginBtn.click();
+        }, 1500);
+      } catch (err) {
+        showAlert(err.message, true);
+      }
+    });
+  </script>
+</body>
+</html>

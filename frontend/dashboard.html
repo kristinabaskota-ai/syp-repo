@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RareRoot - Botanical Dashboard</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿</text></svg>">
+</head>
+<body>
+  <!-- Header Bar -->
+  <header class="app-header">
+    <a href="#shop" class="header-brand">
+      <div class="logo-icon">🌿</div>
+      <span class="logo-text">RareRoot</span>
+    </a>
+
+    <div class="header-actions">
+      <!-- Cart Icon (Buyers only) -->
+      <a href="#cart" class="cart-icon-btn" id="headerCartBtn" title="View Cart">
+        <span>🛒</span>
+        <span class="cart-count-badge" id="headerCartCount" style="display: none;">0</span>
+      </a>
+
+      <!-- User Profile Badge -->
+      <div class="user-badge" id="headerUserBadge">
+        <div class="user-avatar" id="headerUserAvatar">U</div>
+        <span class="user-name" id="headerUserName">Loading...</span>
+        <span class="role-tag" id="headerUserRole">Role</span>
+      </div>
+
+      <!-- Logout Button -->
+      <button type="button" class="btn btn-secondary btn-sm" id="logoutBtn">
+        Sign Out
+      </button>
+    </div>
+  </header>
+
+  <!-- App Layout Container -->
+  <div class="app-container">
+    <!-- Sidebar Navigation -->
+    <aside class="app-sidebar" id="appSidebar">
+      <div class="sidebar-category">Marketplace</div>
+      <a href="#shop" class="nav-item" data-route="shop">
+        <span class="icon">🪴</span>
+        <span>Plant Shop</span>
+      </a>
+      <a href="#doctor" class="nav-item" data-route="doctor">
+        <span class="icon">🩺</span>
+        <span>Plant Doctor</span>
+      </a>
+      <a href="#wanted" class="nav-item" data-route="wanted">
+        <span class="icon">🌱</span>
+        <span>Wanted Board</span>
+      </a>
+      <a href="#import-check" class="nav-item" data-route="import-check">
+        <span class="icon">📜</span>
+        <span>Import Checker</span>
+      </a>
+
+      <!-- Buyer Navigation -->
+      <div class="sidebar-category buyer-only" style="display: none;">My Activity</div>
+      <a href="#cart" class="nav-item buyer-only" data-route="cart" style="display: none;">
+        <span class="icon">🛒</span>
+        <span>Shopping Cart</span>
+      </a>
+      <a href="#orders" class="nav-item buyer-only" data-route="orders" style="display: none;">
+        <span class="icon">📦</span>
+        <span>My Orders</span>
+      </a>
+
+      <!-- Seller / Admin Navigation -->
+      <div class="sidebar-category seller-admin-only" style="display: none;">Nursery Management</div>
+      <a href="#listings" class="nav-item seller-admin-only" data-route="listings" style="display: none;">
+        <span class="icon">🏷️</span>
+        <span>Product Listings</span>
+      </a>
+      <a href="#orders-received" class="nav-item seller-admin-only" data-route="orders-received" style="display: none;">
+        <span class="icon">📑</span>
+        <span>Orders Received</span>
+      </a>
+
+      <!-- Admin Only Navigation -->
+      <div class="sidebar-category admin-only" style="display: none;">Platform Administration</div>
+      <a href="#users" class="nav-item admin-only" data-route="users" style="display: none;">
+        <span class="icon">👥</span>
+        <span>User Accounts</span>
+      </a>
+      <a href="#import-rules" class="nav-item admin-only" data-route="import-rules" style="display: none;">
+        <span class="icon">⚖️</span>
+        <span>Import Regulations</span>
+      </a>
+      <a href="#reports" class="nav-item admin-only" data-route="reports" style="display: none;">
+        <span class="icon">📊</span>
+        <span>Analytics & Reports</span>
+      </a>
+
+      <!-- Settings Navigation -->
+      <div class="sidebar-category">Account</div>
+      <a href="#account" class="nav-item" data-route="account">
+        <span class="icon">⚙️</span>
+        <span>Settings</span>
+      </a>
+    </aside>
+
+    <!-- Main View Content Area -->
+    <main class="app-main" id="mainContent">
+      <div class="empty-state">
+        <div class="empty-state-icon">🌿</div>
+        <h3>Loading RareRoot...</h3>
+      </div>
+    </main>
+  </div>
+
+  <!-- Global Modal Container -->
+  <div class="modal-overlay" id="globalModalOverlay">
+    <div class="modal-content" id="globalModalContent"></div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Main JavaScript App Controller -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
